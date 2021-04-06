@@ -11,7 +11,60 @@
 
 var range;
 var bombe = 16;
-var tentativi = range - bombe;
+
 var numeriBombe = [];
 var numeriUtente = [];
 
+
+// SCELTA DEL LIVELLO
+
+var livello = parseInt(prompt('Scegli il livello da 1 a 3'));
+
+while (isNaN(livello) || (livello < 1 || livello > 3)){
+
+    livello = parseInt(prompt('Il valore che hai inserito è errato. Inserisci il livello da 1 a 3'));
+}
+
+switch(livello){
+    case 1:
+        range = 100;
+        break;
+    case 2:
+        range = 80;
+        break;
+    case 3:
+        range = 50;
+}
+
+var tentativi = range - bombe;
+
+console.log(tentativi);
+
+
+// CREAZIONE NUMERI RANDOM PER LE BOMBE
+
+for ( var i = 0; numeriBombe.length < bombe; i++){
+
+    var number = numeriRandom();
+
+    if(numeriBombe.includes(number) === false){
+        numeriBombe.push(number);
+    }
+
+}
+
+console.log('Bombe: ', numeriBombe);
+
+
+
+
+
+/*********************************************************************
+ * FUNZIONI
+ **********************************************************************/
+
+//FUNZIONE PER CREARE NUMERI RANDOM
+function numeriRandom(){
+    var numeroRandom = Math.floor(Math.random() * range) + 1;
+    return numeroRandom;
+}
