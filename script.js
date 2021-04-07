@@ -15,7 +15,6 @@ var bombe = 16;
 var numeriBombe = [];
 var numeriUtente = [];
 
-
 // SCELTA DEL LIVELLO
 
 var livello = parseInt(prompt('Scegli il livello da 1 a 3'));
@@ -52,8 +51,52 @@ for ( var i = 0; numeriBombe.length < bombe; i++){
     }
 
 }
+console.log('numeri bombe', numeriBombe);
 
-console.log('Bombe: ', numeriBombe);
+var tentativi = range - bombe;
+
+//INIZIO GIOCO: INSERIMENTO DEI NUMERI DA PARTE DELL'UTENTE
+
+while(numeriUtente.length < tentativi){
+    
+    numeroUtente = parseInt(prompt('Inserisci un numero da 1 a ' + range));
+
+    //QUESTA CONDIZIONE PERMETTE DI VERIFICARE SE IL NUMERO INSERITO è GIA PRESENTE
+    while( numeriUtente.includes(numeroUtente) || isNaN(numeroUtente)){
+        numeroUtente = parseInt(prompt('Hai inserito un vaore errato, oppure hai già inserito questo numero. \nInserisci un numero da 1 a ' + range));
+
+    } 
+    
+        //QUESTA CONDIZIONE PERMETTE DI VERIFICARE SE IL NUMERO INSERITO è UNA BOMBA
+
+    if(numeriBombe.includes(numeroUtente)) {
+
+        
+        alert('Hai trovato una bomba...Hai perso')
+        break;
+        
+
+    }else {
+        numeriUtente.push(numeroUtente);
+        console.log(numeriUtente);
+    }
+
+
+}
+
+if(numeriUtente.length == tentativi--){
+    alert('HAI VINTO!!!!');
+}
+
+
+console.log('I numeri che hai inserito sono ', numeriUtente );
+
+
+
+
+
+
+
 
 
 
